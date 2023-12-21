@@ -7,22 +7,24 @@ const SingIn = () => {
   const [error, seTError] = useState("");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+
   const singIn = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const email = e.target.name.value;
+    const email = e.target.email.value;
     const password = e.target.password.value;
     try {
       const res = await login(email, password);
-      console.log(res);
+      setLoading(false)
       seTError("");
       navigate("/");
     } catch (error) {
+      setLoading(false);
       if (error.code === "auth/invalid-login-credentials") {
         seTError("invalid-login-credentials");
       }
-      setLoading(false);
     }
+  
   };
   return (
     <div>

@@ -11,29 +11,34 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
+  
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const login = () => {
-    return signInWithEmailAndPassword(email, password);
+  const login = (email,password) => {
+    return signInWithEmailAndPassword(auth,email, password);
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
+        localStorage.setItem('user',"true")
+      }else{
+        localStorage.removeItem('user')
       }
     });
     return () => {
       unsubscribe();
     };
   }, []);
-  console.log(user)
+  
   const authValue = {
     createUser,
     auth,
     login,
+    user
   };
-
+  console.log(user)
   return (
     <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
   );

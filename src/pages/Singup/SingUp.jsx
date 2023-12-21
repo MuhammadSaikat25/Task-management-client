@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { updateProfile } from "firebase/auth";
-
+import axios from "axios";
 const SingUp = () => {
   const { createUser, auth } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -25,10 +25,17 @@ const SingUp = () => {
         displayName: name,
         photoURL: image,
       });
-      if (crateRes.user.email) {
-        setLoading(false);
-        navigate("/");
-      }
+      const userData = {
+        email,
+        name,
+        job,
+      };
+      const postUser = await axios.post(
+        `${import.meta.env.VITE_SERVER}/postUser`,
+        userData
+      );
+      setLoading(false);
+      navigate("/");
       seTError("");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
