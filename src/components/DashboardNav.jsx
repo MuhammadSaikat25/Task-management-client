@@ -18,13 +18,13 @@ const DashboardNav = () => {
       <div className="lg:flex items-center justify-around hidden  p-3 shadow-md shadow-gray-400">
         <div className="">
           <Link to={"/"}>
-            <img className="w-[70px]" src={logo} alt="" />
+            <img className="w-[70px] cursor-pointer" src={logo} alt="" />
           </Link>
         </div>
         <div className="font-semibold text-gray-800 flex items-center gap-10">
           <NavLink onClick={logOut}>logout</NavLink>
           <NavLink to={`/dashboard/addTodo`}>Add Todo</NavLink>
-          <img className="w-[40px]" src={user?.photoURL} alt="" />
+          <img className="w-[40px] cursor-pointer" src={user?.photoURL} alt="" />
         </div>
       </div>
       {/* ------------------------ Nav bar for sm and md device----------------------- */}

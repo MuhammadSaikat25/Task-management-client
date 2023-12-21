@@ -25,7 +25,7 @@ const Nav = () => {
           <NavLink to={`/singUp`}>Sing up</NavLink>
           <NavLink to={`/login`}>Sing In</NavLink>
           <NavLink onClick={logOut}>logout</NavLink>
-          {isUser === "true" && <NavLink to={"/dashboard"}>Dashboard</NavLink>}
+          {isUser === "true" && <NavLink to={"/dashboard/addTodo"}>Dashboard</NavLink>}
         </div>
       </div>
       {/* ------------------------ Nav bar for sm and md device----------------------- */}
