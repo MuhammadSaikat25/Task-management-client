@@ -14,7 +14,7 @@ const Nav = () => {
           </Link>
         </div>
         <div className="font-semibold text-gray-800 flex items-center gap-5">
-          <NavLink>Sing up</NavLink>
+          <NavLink to={`/singUp`}>Sing up</NavLink>
           <NavLink>Sing In</NavLink>
           <NavLink>logout</NavLink>
         </div>
