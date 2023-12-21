@@ -2,9 +2,15 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { MdMenuOpen } from "react-icons/md";
 import { VscChromeClose } from "react-icons/vsc";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Firebase/AuthProvider";
+import { signOut } from "firebase/auth";
 const Nav = () => {
+  const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
+  const logOut = async () => {
+    await signOut(auth);
+  };
   return (
     <nav className="w-full">
       <div className="lg:flex items-center justify-between hidden bg-[#FFF7D4] p-3 shadow-md shadow-gray-400">
@@ -15,8 +21,8 @@ const Nav = () => {
         </div>
         <div className="font-semibold text-gray-800 flex items-center gap-5">
           <NavLink to={`/singUp`}>Sing up</NavLink>
-          <NavLink>Sing In</NavLink>
-          <NavLink>logout</NavLink>
+          <NavLink to={`/login`}>Sing In</NavLink>
+          <NavLink onClick={logOut}>logout</NavLink>
         </div>
       </div>
       {/* ------------------------ Nav bar for sm and md device----------------------- */}
